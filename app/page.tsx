@@ -24,7 +24,7 @@ const Home = () => {
               <span className="text-primary"> PriceCator</span>
             </h1>
             <p className="mt-6">
-              Powerful, self-server product and growth analytics to help ypu
+              Powerful, self-server product and growth analytics to help you
               convert, engage, and retain more.
             </p>
             <SearchBar/>
