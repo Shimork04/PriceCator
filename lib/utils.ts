@@ -1,5 +1,3 @@
-// 
-
 import { PriceHistoryItem, Product } from "@/types";
 
 const Notification = {

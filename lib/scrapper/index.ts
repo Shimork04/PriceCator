@@ -2,10 +2,10 @@
 
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { extractCurrency, extractDescription, extractPrice } from "./utils"
+import { extractCurrency, extractDescription, extractPrice } from '../utils';
 
-export async function scrapeAmazonProduct(productUrl: string) {
-  if(!productUrl) return;
+export async function scrapeAmazonProduct(url: string) {
+  if(!url) return;
 
   // BrightData proxy configuration
   const username = String(process.env.BRIGHT_DATA_USERNAME);
@@ -25,7 +25,7 @@ export async function scrapeAmazonProduct(productUrl: string) {
 
   try {
     // Fetch the product page
-    const response = await axios.get(productUrl, options);
+    const response = await axios.get(url, options);
     const $ = cheerio.load(response.data);
 
     // Extract the product title
@@ -38,10 +38,9 @@ export async function scrapeAmazonProduct(productUrl: string) {
 
     const originalPrice = extractPrice(
       $('#priceblock_ourprice'),
-      // $('.a-price.a-text-price span.a-offscreen'),
+      $('.a-price.a-text-price span.a-offscreen'),
       $('#listPrice'),
       $('#priceblock_dealprice'),
-      $('.a-size-small aok-offscreen'),
       $('.a-size-base.a-color-price')
     );
 
@@ -57,11 +56,11 @@ export async function scrapeAmazonProduct(productUrl: string) {
     const currency = extractCurrency($('.a-price-symbol'))
     const discountRate = $('.savingsPercentage').text().replace(/[-%]/g, "");
 
-    // const description = extractDescription($)
+    const description = extractDescription($)
 
     // Construct data object with scraped information
     const data = {
-      productUrl,
+      url,
       currency: currency || '$',
       image: imageUrls[0],
       title,
@@ -73,14 +72,13 @@ export async function scrapeAmazonProduct(productUrl: string) {
       reviewsCount:100,
       stars: 4.5,
       isOutOfStock: outOfStock,
-      // description,
+      description,
       lowestPrice: Number(currentPrice) || Number(originalPrice),
       highestPrice: Number(originalPrice) || Number(currentPrice),
       averagePrice: Number(currentPrice) || Number(originalPrice),
     }
-    console.log(data);
+
     return data;
-    
   } catch (error: any) {
     console.log(error);
   }
