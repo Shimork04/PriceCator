@@ -3,6 +3,7 @@ import { scrapeAmazonProduct } from "../scrapper";
 
 export async function scrapeAndStoreProduct(productUrl: string) {
   if (!productUrl) {
+    console.log("Some error in Product Url");
     return;
   }
 

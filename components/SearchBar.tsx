@@ -12,7 +12,7 @@ const isValidAmazonProductURL = (url: string) => {
     if (
       hostname.includes("amazon.com") ||
       hostname.includes("amazon.in") ||
-      hostname.includes("amazon")
+      hostname.includes("amazon") || hostname.includes("amzn.in")
     ) {
       return true;
     }
@@ -39,13 +39,13 @@ const SearchBar = () => {
 
       //scrape the product page
       const product = await scrapeAndStoreProduct(searchPrompt);
-
+      console.log("Submitted");
     } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);
     }
-    console.log("Submitted");
+    
   };
 
   return (
