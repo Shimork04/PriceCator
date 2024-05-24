@@ -1,4 +1,5 @@
-**What is PriceCator**
+
+## **What is PriceCator**
 
 ​Essentially a web scraper designed to extract specific item prices from Amazon.com.
 The tool is equipped with proxy-changing functionality, ensuring smooth scraping operations. Integrated a feature allowing users to receive email notifications via Node mailer.
