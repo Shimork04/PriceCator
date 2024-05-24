@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**What is PriceCator**
+​Essentially a web scraper designed to extract specific item prices from Amazon.com.
+The tool is equipped with proxy-changing functionality, ensuring smooth scraping operations. Integrated a feature allowing users to receive email notifications via Node mailer.
 
 ## Getting Started
 
