@@ -11,7 +11,7 @@ const allProducts = await getAllProducts();
 
   return (
     <>
-      <section className="px-6 md:px-28 py-24">
+      <section className="px-6 md:px-28 py-20">
         {/* border-2 border-purple-500 */}
         <div className="flex max-xl:flex-col gap-16">
           <div className="flex flex-col justify-center">
@@ -29,16 +29,16 @@ const allProducts = await getAllProducts();
               <span className="text-primary"> PriceCator</span>
             </h1>
             <p className="mt-6">
-              Powerful, self-server product and growth analytics to help you
-              convert, engage, and retain more.
+              Price-Cator is a powerful Amazon ecommerce scrapper tool, that lets you track the price of your favourite purchase and you can get notified when the price hits your set target. 
             </p>
             <SearchBar/>
+            {/* <a href="#trending-section" className="text-black text-lg font-30">Recent Searches</a> */}
           </div>
           <HeroCarousel/>
         </div>
       </section>
-      <section className="trending-section">
-        <h2 className="section-text"> Trending </h2>
+      <section className="trending-section ">
+        <h1 className="text-[32px] font-bold text-primary"> Recent Searches </h1>
 
 
         <div className="flex flex-wrap gap-x-8 gay-y-16">

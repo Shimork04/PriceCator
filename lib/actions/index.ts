@@ -6,7 +6,8 @@ import { connectToDB } from "../mongoose";
 import { scrapeAmazonProduct } from '../scrapper';
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
 import { User } from "@/types";
-// import { generateEmailBody, sendEmail } from "../nodemailer";
+import { generateEmailBody, sendEmail } from "../nodemailer";
+
 
 export async function scrapeAndStoreProduct(productUrl: string) {
   if(!productUrl) return;
@@ -49,6 +50,8 @@ export async function scrapeAndStoreProduct(productUrl: string) {
   }
 }
 
+
+
 export async function getProductById(productId: string) {
   try {
     connectToDB();
@@ -63,6 +66,8 @@ export async function getProductById(productId: string) {
   }
 }
 
+
+// getting all the products
 export async function getAllProducts() {
   try {
     connectToDB();
@@ -75,6 +80,8 @@ export async function getAllProducts() {
   }
 }
 
+
+// getting similar product
 export async function getSimilarProducts(productId: string) {
   try {
     connectToDB();
@@ -93,24 +100,26 @@ export async function getSimilarProducts(productId: string) {
   }
 }
 
-// export async function addUserEmailToProduct(productId: string, userEmail: string) {
-//   try {
-//     const product = await Product.findById(productId);
 
-//     if(!product) return;
+// accepting user email address
+export async function addUserEmailToProduct(productId: string, userEmail: string) {
+  try {
+    const product = await Product.findById(productId);
 
-//     const userExists = product.users.some((user: User) => user.email === userEmail);
+    if(!product) return;
 
-//     if(!userExists) {
-//       product.users.push({ email: userEmail });
+    const userExists = product.users.some((user: User) => user.email === userEmail);
 
-//       await product.save();
+    if(!userExists) {
+      product.users.push({ email: userEmail });
 
-//       const emailContent = await generateEmailBody(product, "WELCOME");
+      await product.save();
 
-//       await sendEmail(emailContent, [userEmail]);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
+      const emailContent = await generateEmailBody(product, "WELCOME");
+
+      await sendEmail(emailContent, [userEmail]);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
