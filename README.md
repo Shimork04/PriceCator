@@ -4,6 +4,9 @@
 ​Essentially a web scraper designed to extract specific item prices from Amazon.com.
 The tool is equipped with proxy-changing functionality, ensuring smooth scraping operations. Integrated a feature allowing users to receive email notifications via Node mailer.
 
+## Project Demo
+Link : https://drive.google.com/file/d/1y2WAKuQR8bYLffqxv74b4lO_s41jbK3h/view?usp=sharing
+
 ## Getting Started
 
 First, run the development server:
